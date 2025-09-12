@@ -1,0 +1,2 @@
+# javasript_func
+teszt
