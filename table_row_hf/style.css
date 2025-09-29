@@ -1,0 +1,21 @@
+tbody>tr:hover,
+tbody>tr:has(>td[rowspan]):hover+tr>td,
+tbody>tr:has(>td[rowspan]):has(+tr:hover)>td
+{
+    font-weight: bold;
+    color: red;
+    background-color: lightcoral;
+}
+
+tbody>tr:last-child,
+tbody>tr:has(+tr:last-child):has(>td[rowspan]),
+tbody>tr:nth-child(1),
+tbody>tr:nth-child(1):has(>td[rowspan])+tr
+{
+    background-color: lightblue;
+}
+
+table, td, tr, th{
+    border: 1px solid black;
+    border-collapse: collapse;
+}
