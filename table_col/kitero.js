@@ -88,9 +88,23 @@ th3.colSpan = 2;
 for (let i of tableArr){
     let tr = tbody.appendChild(document.createElement("tr"))
     for (let j in i){
-        let td = tr.appendChild(document.createElement("td"))
-        td.innerText = i[j]
+        let td = createCell("td", i[j], tr)
         if (j == "szerelme")
             td.colSpan = 2
     }
+}
+
+/**
+ * Létrehoz egy táblázat cellát
+ * 
+ * @param {string} celltype - Cella típusa
+ * @param {string} cellContent - Cella tartalma
+ * @param {HTMLTableRowElement} parentRow - Sor szülő
+ * @returns {HTMLTableCellElement} A létrehozott Cella
+ */
+function createCell(celltype, cellContent, parentRow){
+    const cell = parentRow.appendChild(document.createElement(celltype))
+    cell.innerText = cellContent
+
+    return cell
 }
