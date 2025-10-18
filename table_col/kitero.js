@@ -64,25 +64,14 @@ const tableArr = [
     }
 ]
 
-const table = document.createElement("table")
-const thead = document.createElement("thead")
-const tbody = document.createElement("tbody")
-const trOfTh = document.createElement("tr")
-const th1 = document.createElement("th")
-const th2 = document.createElement("th")
-const th3 = document.createElement("th")
+const table = document.body.appendChild(document.createElement("table"))
+const thead = table.appendChild(document.createElement("thead"))
+const tbody = table.appendChild(document.createElement("tbody"))
+const trOfTh = thead.appendChild(document.createElement("tr"))
 
-document.body.appendChild(table)
-table.appendChild(thead)
-table.appendChild(tbody)
-thead.appendChild(trOfTh)
-trOfTh.appendChild(th1)
-trOfTh.appendChild(th2)
-trOfTh.appendChild(th3)
-
-th1.innerText = "Szerző neve"
-th2.innerText = "Korszak"
-th3.innerText = "Szerelmek"
+const th1 = createCell("th", "Szerző neve", trOfTh)
+const th2 = createCell("th", "Korszak", trOfTh)
+const th3 = createCell("th", "Szerelmek", trOfTh)
 th3.colSpan = 2;
 
 for (let i of tableArr){
@@ -95,9 +84,9 @@ for (let i of tableArr){
 }
 
 /**
- * Létrehoz egy táblázat cellát
+ * Létrehoz egy táblázat cellát és append-elí
  * 
- * @param {string} celltype - Cella típusa
+ * @param {"td" | "th"} celltype - Cella típusa
  * @param {string} cellContent - Cella tartalma
  * @param {HTMLTableRowElement} parentRow - Sor szülő
  * @returns {HTMLTableCellElement} A létrehozott Cella
