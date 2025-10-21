@@ -97,3 +97,72 @@ function createCell(celltype, cellContent, parentRow){
 
     return cell
 }
+
+/**
+ * Létrehoz egy label-t és hozzá egy input field-et, amit hozzá ad a form-hoz
+ *
+ * @param {string} inputName - Az input name paramétere
+ * @param {string} type - Az input típusa
+ * @param {string} id - Az input azonosítója
+ * @param {string} labelText - A label element szövege
+ * @param {HTMLFormElement} parentForm - A szülő form element
+ * @returns {void}
+ */
+function createInputField(inputName, type, id, labelText, parentForm){
+    const label = parentForm.appendChild(document.createElement("label"))
+    label.htmlFor = inputName
+    label.innerText = labelText
+
+    parentForm.appendChild(document.createElement("br"))
+
+    const input = parentForm.appendChild(document.createElement("input"))
+    input.type = type
+    input.id = id
+    input.name = inputName
+
+    parentForm.appendChild(document.createElement("br"))
+    parentForm.appendChild(document.createElement("br"))
+}
+
+/**
+ * Input field tömb
+ *
+ * @type {{labelText: string, id: string, type: string, inputName: string}[]}
+ */
+const formInputFields = [
+    {
+        "inputName" : "kolto_nev",
+        "type" : "text",
+        "id" : "kolto_nev",
+        "labelText" : "Költő neve:"
+    },
+    {
+        "inputName" : "korszak",
+        "type" : "text",
+        "id" : "korszak",
+        "labelText" : "Korszak:"
+    },
+    {
+        "inputName" : "szerelme1",
+        "type" : "text",
+        "id" : "szerelme1",
+        "labelText" : "Szerelme:"
+    },
+    {
+        "inputName" : "szerelme2",
+        "type" : "text",
+        "id" : "szerelme2",
+        "labelText" : "Szerelme:"
+    }
+]
+const form = document.body.appendChild(document.createElement("form"))
+
+const h2Element = form.appendChild(document.createElement("h2"))
+h2Element.innerText = "Javascript űrlap"
+
+for (let i of formInputFields){
+    createInputField(i.inputName, i.type, i.id, i.labelText, form)
+}
+
+const button = form.appendChild(document.createElement("button"))
+button.innerText = "Hozzáadás"
