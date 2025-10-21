@@ -131,28 +131,28 @@ function createInputField(inputName, type, id, labelText, parentForm){
  */
 const formInputFields = [
     {
-        "inputName" : "kolto_nev",
-        "type" : "text",
-        "id" : "kolto_nev",
+        inputName : "kolto_nev",
+        type : "text",
+        id : "kolto_nev",
         "labelText" : "Költő neve:"
     },
     {
-        "inputName" : "korszak",
-        "type" : "text",
-        "id" : "korszak",
-        "labelText" : "Korszak:"
+        inputName : "korszak",
+        type : "text",
+        id : "korszak",
+        labelText : "Korszak:"
     },
     {
-        "inputName" : "szerelme1",
-        "type" : "text",
-        "id" : "szerelme1",
-        "labelText" : "Szerelme:"
+        inputName : "szerelme1",
+        type : "text",
+        id : "szerelme1",
+        labelText : "Szerelme:"
     },
     {
-        "inputName" : "szerelme2",
-        "type" : "text",
-        "id" : "szerelme2",
-        "labelText" : "Szerelme:"
+        inputName : "szerelme2",
+        type : "text",
+        id : "szerelme2",
+        labelText : "Szerelme:"
     }
 ]
 const form = document.body.appendChild(document.createElement("form"))
