@@ -110,7 +110,46 @@ function submitEventListener(event){
     /**
     * @type {{nationality: string, book: string[], authors: string[]}}
     */
-    const obj = {}
+    const obj = {
+        nationality: nemzetisegValue,
+        book: [mu1Value, mu2Value],
+        authors: [szerzo1Value, szerzo2Value]
+    }
+
+    if (mu2Value == "" || szerzo2 == ""){
+        obj.book.pop()
+        obj.authors.pop()
+    }
+
+    const originalTbody = document.getElementById("originalTbody")
+    const trNationality = originalTbody.appendChild(document.createElement("tr"))
+
+    const tdNationality = trNationality.appendChild(document.createElement("td"))
+    tdNationality.innerText = obj.nationality
+    tdNationality.rowSpan = obj.authors.length
+    tdNationality.addEventListener("click", function (e) {
+        /**
+         * @type {HTMLTableCellElement}
+         */
+        const target = e.target
+        target.classList.add("marked")
+    })
+
+    for (let j = 0; j < obj.authors.length; j++){
+        const tdAuthor = document.createElement("td")
+        tdAuthor.innerText = obj.authors[j]
+        const tdBook = document.createElement("td")
+        tdBook.innerText = obj.book[j]
+
+        if (j === 0){
+            trNationality.appendChild(tdAuthor)
+            trNationality.appendChild(tdBook)
+        } else {
+            const tr = originalTbody.appendChild(document.createElement("tr"))
+            tr.appendChild(tdAuthor)
+            tr.appendChild(tdBook)
+        }
+    }
 }
 
 /**

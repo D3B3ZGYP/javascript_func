@@ -27,15 +27,14 @@ tr td.marked{
     color: red;
 }
 
-/*
 tr:hover>td,
-tr:has(>td[rowspan]):hover+tr>td,
-tr:has(>td[rowspan]):has(+tr:hover)>td
+tr:has(>td[rowspan="2"]):hover+tr>td,
+tr:has(>td[rowspan="2"]):has(+tr:hover)>td
 {
     background-color: aqua;
 }
-*/
 
+/*
 tr:not(:has(td[rowspan]))+tr:not(:has(td[rowspan])):hover td,
 tr:has(td[rowspan]):hover td,
 tr:has(td[rowspan]):hover + tr td,
@@ -44,3 +43,4 @@ tr:has(td[rowspan])+tr:hover td
 {
     background-color: aqua;
 }
+*/
