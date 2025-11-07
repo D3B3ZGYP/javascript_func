@@ -23,6 +23,10 @@ button:not(:has(+p)){
     color: red;
 }
 
+tr td.marked{
+    color: red;
+}
+
 /*
 tr:hover>td,
 tr:has(>td[rowspan]):hover+tr>td,

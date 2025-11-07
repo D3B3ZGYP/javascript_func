@@ -43,6 +43,13 @@ for (let i of tableArr){
     const tdNationality = trNationality.appendChild(document.createElement("td"))
     tdNationality.innerText = i.nationality
     tdNationality.rowSpan = i.authors.length
+    tdNationality.addEventListener("click", function (e) {
+        /**
+         * @type {HTMLTableCellElement}
+         */
+        const target = e.target
+        target.classList.add("marked")
+    })
 
     for (let j = 0; j < i.authors.length; j++){
         const tdAuthor = document.createElement("td")
@@ -60,3 +67,54 @@ for (let i of tableArr){
         }
     }
 }
+
+/**
+ * 
+ * @param {Event} event 
+ */
+function submitEventListener(event){
+    event.preventDefault()
+
+    /**
+     * @type {HTMLFormElement}
+     */
+    const target = event.target
+
+    /**
+     * @type {HTMLInputElement}
+     */
+    const nemzetiseg = target.querySelector("#nemzetiseg")
+    /**
+     * @type {HTMLInputElement}
+     */
+    const szerzo1 = target.querySelector("#szerzo1")
+    /**
+     * @type {HTMLInputElement}
+     */
+    const mu1 = target.querySelector("#mu1")
+    /**
+     * @type {HTMLInputElement}
+     */
+    const szerzo2 = target.querySelector("#szerzo2")
+    /**
+     * @type {HTMLInputElement}
+     */
+    const mu2 = target.querySelector("#mu2")
+
+    const nemzetisegValue = nemzetiseg.value
+    const szerzo1Value = szerzo1.value
+    const mu1Value = mu1.value
+    const szerzo2Value = szerzo2.value
+    const mu2Value = mu2.value
+
+    /**
+    * @type {{nationality: string, book: string[], authors: string[]}}
+    */
+    const obj = {}
+}
+
+/**
+ * @type {HTMLFormElement}
+ */
+const htmlForm = document.getElementById("htmlform")
+htmlForm.addEventListener("submit",submitEventListener)
