@@ -1,5 +1,4 @@
 /**
- *
  * @type {{nationality: string, book: string[], authors: string[]}[]}
  */
 const tableArr = [
@@ -25,11 +24,15 @@ const tableArr = [
     }
 ]
 
+/**
+ * @type {string[]}
+ */
 const header = ["Nemzetiség", "Szerző", "Mű"]
 
 const table = document.body.appendChild(document.createElement("table"))
 const thead = table.appendChild(document.createElement("thead"))
 const tbody = table.appendChild(document.createElement("tbody"))
+tbody.id = "originalTbody"
 
 const trThead = thead.appendChild(document.createElement("tr"))
 for (let i of header){
@@ -37,36 +40,36 @@ for (let i of header){
     th.innerText = i
 }
 
-for (let i of tableArr){
-    const trNationality = tbody.appendChild(document.createElement("tr"))
+renderTableBody(tableArr)
 
-    const tdNationality = trNationality.appendChild(document.createElement("td"))
-    tdNationality.innerText = i.nationality
-    tdNationality.rowSpan = i.authors.length
-    tdNationality.addEventListener("click", function (e) {
-        /**
-         * @type {HTMLTableCellElement}
-         */
-        const target = e.target
-        target.classList.add("marked")
-    })
+/**
+ * @type {HTMLFormElement}
+ */
+const htmlForm = document.getElementById("htmlform")
+htmlForm.addEventListener("submit",submitEventListener)
 
-    for (let j = 0; j < i.authors.length; j++){
-        const tdAuthor = document.createElement("td")
-        tdAuthor.innerText = i.authors[j]
-        const tdBook = document.createElement("td")
-        tdBook.innerText = i.book[j]
 
-        if (j === 0){
-            trNationality.appendChild(tdAuthor)
-            trNationality.appendChild(tdBook)
-        } else {
-            const tr = tbody.appendChild(document.createElement("tr"))
-            tr.appendChild(tdAuthor)
-            tr.appendChild(tdBook)
-        }
+/**
+ *
+ * @param {Event} event
+ */
+function markedEventListener(event){
+    /**
+     * @type {HTMLTableCellElement}
+     */
+    const target = event.target
+
+    /**
+     * @type {HTMLElement || null}
+     */
+    const firstMarkedElement = target.parentElement.parentElement.querySelector(".marked")
+    if (firstMarkedElement != null){
+        firstMarkedElement.classList.remove("marked")
     }
+
+    target.classList.add("marked")
 }
+
 
 /**
  * 
@@ -121,39 +124,39 @@ function submitEventListener(event){
         obj.authors.pop()
     }
 
-    const originalTbody = document.getElementById("originalTbody")
-    const trNationality = originalTbody.appendChild(document.createElement("tr"))
+    tableArr.push(obj)
 
-    const tdNationality = trNationality.appendChild(document.createElement("td"))
-    tdNationality.innerText = obj.nationality
-    tdNationality.rowSpan = obj.authors.length
-    tdNationality.addEventListener("click", function (e) {
-        /**
-         * @type {HTMLTableCellElement}
-         */
-        const target = e.target
-        target.classList.add("marked")
-    })
-
-    for (let j = 0; j < obj.authors.length; j++){
-        const tdAuthor = document.createElement("td")
-        tdAuthor.innerText = obj.authors[j]
-        const tdBook = document.createElement("td")
-        tdBook.innerText = obj.book[j]
-
-        if (j === 0){
-            trNationality.appendChild(tdAuthor)
-            trNationality.appendChild(tdBook)
-        } else {
-            const tr = originalTbody.appendChild(document.createElement("tr"))
-            tr.appendChild(tdAuthor)
-            tr.appendChild(tdBook)
-        }
-    }
+    renderTableBody()
 }
 
 /**
- * @type {HTMLFormElement}
+ * @param {{nationality: string, book: string[], authors: string[]}[]} tableData
  */
-const htmlForm = document.getElementById("htmlform")
-htmlForm.addEventListener("submit",submitEventListener)
+function renderTableBody(tableData){
+    const originalTbody = document.getElementById("originalTbody")
+    originalTbody.innerHTML = ""
+
+    for (let i of tableArr){
+        const trNationality = originalTbody.appendChild(document.createElement("tr"))
+        const tdNationality = trNationality.appendChild(document.createElement("td"))
+        tdNationality.innerText = i.nationality
+        tdNationality.rowSpan = i.authors.length
+        tdNationality.addEventListener("click", markedEventListener)
+
+        for (let j = 0; j < i.authors.length; j++){
+            const tdAuthor = document.createElement("td")
+            tdAuthor.innerText = i.authors[j]
+            const tdBook = document.createElement("td")
+            tdBook.innerText = i.book[j]
+
+            if (j === 0){
+                trNationality.appendChild(tdAuthor)
+                trNationality.appendChild(tdBook)
+            } else {
+                const tr = originalTbody.appendChild(document.createElement("tr"))
+                tr.appendChild(tdAuthor)
+                tr.appendChild(tdBook)
+            }
+        }
+    }
+}
