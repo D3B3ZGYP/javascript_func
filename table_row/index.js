@@ -126,7 +126,7 @@ function submitEventListener(event){
 
     tableArr.push(obj)
 
-    renderTableBody()
+    renderTableBody(tableArr)
 }
 
 /**
@@ -136,7 +136,7 @@ function renderTableBody(tableData){
     const originalTbody = document.getElementById("originalTbody")
     originalTbody.innerHTML = ""
 
-    for (let i of tableArr){
+    for (let i of tableData){
         const trNationality = originalTbody.appendChild(document.createElement("tr"))
         const tdNationality = trNationality.appendChild(document.createElement("td"))
         tdNationality.innerText = i.nationality
