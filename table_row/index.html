@@ -56,21 +56,39 @@
 
     <a href="">Gyakorló link</a>
 
-    <form id="htmlform">
-        <label for="nemzetiseg">Nemzetiség:</label><br>
-        <input type="text" id="htmlnemzetiseg" name="nemzetiseg"><br><br>
+    <form id="htmlform" onsubmit="submitEventListener()">
+        <div>
+            <label for="htmlnemzetiseg">Nemzetiség:</label><br>
+            <input type="text" id="htmlnemzetiseg" name="nemzetiseg">
+            <span class="error"></span>
+            <br><br>
+        </div>
 
-        <label for="szerzo1">Szerző:</label><br>
-        <input type="text" id="htmlszerzo1" name="szerzo1"><br><br>
+        <div>
+            <label for="htmlszerzo1">Szerző:</label><br>
+            <input type="text" id="htmlszerzo1">
+            <span class="error"></span>
+            <br><br>
+        </div>
 
-        <label for="mu1">Mű:</label><br>
-        <input type="text" id="htmlmu1" name="mu1"><br><br>
+        <div>
+            <label for="htmlmu1">Mű:</label><br>
+            <input type="text" id="htmlmu1" name="mu1">
+            <span class="error"></span>
+            <br><br>
+        </div>
 
-        <label for="szerzo2">Másik Szerző:</label><br>
-        <input type="text" id="htmlszerzo2" name="szerzo2"><br><br>
+        <div>
+            <label for="htmlszerzo2">Másik Szerző:</label><br>
+            <input type="text" id="htmlszerzo2" name="szerzo2">
+            <span class="error"></span>
+            <br><br>
+        </div>
 
-        <label for="mu2">Mű:</label><br>
-        <input type="text" id="htmlmu2" name="mu2"><br><br>
+        <div>
+            <label for="htmlmu2">Mű:</label><br>
+            <input type="text" id="htmlmu2" name="mu2"><br><br>
+        </div>
 
         <button>Hozzáadás</button>
     </form>

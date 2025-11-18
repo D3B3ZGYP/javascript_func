@@ -26,6 +26,34 @@ function markedEventListener(event){
 }
 
 /**
+ * @param {HTMLInputElement} htmlInputField
+ * @param {string} errorMessage
+ * @returns boolean
+ */
+function validateField(htmlInputField, errorMessage){
+    if (htmlInputField.value == ""){
+        htmlInputField.parentElement.querySelector(".error").innerText = errorMessage
+        return false
+    }
+
+    return true
+}
+
+/**
+ * @param {HTMLInputElement[]} htmlInputElements
+ * @returns boolean
+ */
+function validateFields(htmlInputElements){
+    let bool = true
+
+    for (const i of htmlInputElements)
+        if (!validateField(i, "A mező kitöltése kötelező"))
+            bool = false
+
+    return bool
+}
+
+/**
  * Form submit event listener
  * 
  * @param {Event} event 
@@ -37,6 +65,9 @@ function submitEventListener(event){
      * @type {HTMLFormElement}
      */
     const target = event.target
+
+    for (const error of target.querySelectorAll(" .error"))
+        error.innerText = ""
 
     /**
      * @type {HTMLInputElement}
@@ -58,6 +89,9 @@ function submitEventListener(event){
      * @type {HTMLInputElement}
      */
     const mu2 = target.querySelector(target.id == "htmlform" ? "#htmlmu2" : "#mu2")
+
+    if (!validateFields([nemzetiseg, szerzo1, mu1]))
+        return
 
     const nemzetisegValue = nemzetiseg.value
     const szerzo1Value = szerzo1.value
@@ -141,13 +175,13 @@ function renderTableRow(tableBody, writerRow){
  * @returns {void}
  */
 function createInputField(inputName, type, id, labelText, parentForm){
-    const div = parentForm.appendChild(createElement("div"))
+    const div = parentForm.appendChild(document.createElement("div"))
 
     const label = div.appendChild(document.createElement("label"))
     label.htmlFor = inputName
     label.innerText = labelText
 
-    parentForm.appendChild(document.createElement("br"))
+    div.appendChild(document.createElement("br"))
 
     const input = div.appendChild(document.createElement("input"))
     input.type = type
@@ -157,8 +191,8 @@ function createInputField(inputName, type, id, labelText, parentForm){
     const span = div.appendChild(document.createElement("span"))
     span.classList.add("error")
 
-    parentForm.appendChild(document.createElement("br"))
-    parentForm.appendChild(document.createElement("br"))
+    div.appendChild(document.createElement("br"))
+    div.appendChild(document.createElement("br"))
 }
 
 /**
@@ -178,6 +212,8 @@ function createInputForm(fieldData, formId){
 
     const button = form.appendChild(document.createElement("button"))
     button.innerText = "Hozzáadás"
+
+    return form;
 }
 
 /**
@@ -212,4 +248,16 @@ function generateHeader(table, headerList){
     for (let i of headerList){
         createCell("th", i, trThead)
     }
+}
+
+/**
+ * @param {string[]} headerArray
+ * @param {string} tbodyId
+ */
+function generateTable(headerArray, tbodyId){
+    const table = document.body.appendChild(document.createElement("table"))
+    generateHeader(table, headerArray)
+
+    const tbody = table.appendChild(document.createElement("tbody"))
+    tbody.id = tbodyId
 }

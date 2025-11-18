@@ -63,6 +63,45 @@ const tableArr = [
 ]
 
 /**
+ *
+ * @type {header: string[], formInputFields: InputField[]}
+ */
+const headerAndFormInputFields = {
+    header: ["Nemzetiség", "Szerző", "Mű"],
+    formInputFields: [
+        {
+            inputName : "nemzetiseg",
+            type : "text",
+            id : "nemzetiseg",
+            labelText : "Nemzetiség:"
+        },
+        {
+            inputName : "szerzo1",
+            type : "text",
+            id : "szerzo1",
+            labelText : "Szerző:"
+        },
+        {
+            inputName : "mu1",
+            type : "text",
+            id : "mu1",
+            labelText : "Mű:"
+        },
+        {
+            inputName : "szerzo2",
+            type : "text",
+            id : "szerzo2",
+            labelText : "Másik Szerző:"
+        },
+        {
+            inputName : "mu2",
+            type : "text",
+            id : "mu2",
+            labelText : "Másik Mű:"
+        }]
+}
+
+/**
  * @type {string[]}
  */
 const header = ["Nemzetiség", "Szerző", "Mű"]
@@ -74,11 +113,6 @@ const header = ["Nemzetiség", "Szerző", "Mű"]
 const htmlForm = document.getElementById("htmlform")
 htmlForm.addEventListener("submit",submitEventListener)
 
-
-const table = document.body.appendChild(document.createElement("table"))
-const tbody = table.appendChild(document.createElement("tbody"))
-tbody.id = "jsTbody"
-
-generateHeader(table, header)
+generateTable(headerAndFormInputFields.header, "jsTbody")
 renderTableBody(tableArr, "jsTbody")
-createInputForm(formInputFields, "jsform")
+createInputForm(headerAndFormInputFields.formInputFields, "jsform")
