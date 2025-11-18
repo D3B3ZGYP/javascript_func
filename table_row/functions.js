@@ -221,7 +221,7 @@ function createInputForm(fieldData, formId){
  * 
  * @param {"td" | "th"} celltype - Cella típusa
  * @param {string} cellContent - Cella tartalma
- * @param {HTMLTableRowElement | null} parentRow - Sor szülő
+ * @param {HTMLTableRowElement | undefined} parentRow - Sor szülő
  * @returns {HTMLTableCellElement} A létrehozott Cella
  */
 function createCell(celltype, cellContent, parentRow){
